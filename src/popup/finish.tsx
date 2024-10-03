@@ -2,7 +2,8 @@ import { Finish, Icon } from "@/components/icons"
 import { MainFooter } from "@/components/main-footer"
 import { Button } from "@/components/ui/button"
 import { AppContext } from "@/context/app-context"
-import { useContext } from "react"
+import { EVENT_SEND_BOOKMARKS } from "@/lib/events"
+import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 function FinishPopup() {
@@ -21,6 +22,26 @@ function FinishPopup() {
     URL.revokeObjectURL(url)
   }
 
+  // 发送书签数据到 background 并通知当前标签页
+  const sendBookmark = () => {
+    const data = JSON.stringify(treeData, null, 2)
+    console.log("sendBookmarks")
+    chrome.runtime.sendMessage(
+      { type: EVENT_SEND_BOOKMARKS, data: treeData },
+      (response) => {
+        if (chrome.runtime.lastError) {
+          console.error("发送消息时出错:", chrome.runtime.lastError)
+          return
+        }
+        console.log("收到background的响应:", response)
+        if (response.success) {
+          // 关闭popup
+          window.close()
+        }
+      }
+    )
+  }
+
   return (
     <div className="py-6 w-[300px] flex flex-col items-center justify-center">
       <Finish className="w-32 h-32" />
@@ -34,7 +55,7 @@ function FinishPopup() {
       <div className="w-full space-y-5 px-10">
         <Button
           className="text-[16px] font-light w-full py-4 flex items-center justify-center"
-          onClick={() => onDownload()}>
+          onClick={sendBookmark}>
           <Icon
             icon="material-symbols:download-sharp"
             className="w-6 h-6 mr-2"

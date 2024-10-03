@@ -7,6 +7,7 @@ import Bookmark from "./bookmark"
 import Export from "./export"
 import Finish from "./finish"
 import Home from "./home"
+import Tab from "./tab"
 
 function IndexPopup() {
   return (
@@ -17,6 +18,7 @@ function IndexPopup() {
           <Route path="/bookmark" element={<Bookmark />} />
           <Route path="/export" element={<Export />} />
           <Route path="/finish" element={<Finish />} />
+          <Route path="/tab" element={<Tab />} />
         </Routes>
       </Router>
     </AppProvider>

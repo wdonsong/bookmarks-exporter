@@ -7,3 +7,24 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+#plasmo-shadow-container{
+ height: 100vh !important;
+ width: 100vw !important;
+ visibility: hidden !important;
+ position: fixed !important;
+ top: 0 !important;
+ left: 0 !important;
+}
+
+.plasmo-csui-container{
+  right: 0 !important;
+  left: auto !important;
+  bottom: 100px !important;
+  top: auto !important;
+  visibility: visible !important;
+}
+
+.toast-success-class{
+  color:green;
+}

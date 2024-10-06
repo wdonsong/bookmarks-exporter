@@ -40,6 +40,17 @@ function FinishPopup() {
         }
       }
     )
+    // fetch(
+    //   `${process.env.PLASMO_PUBLIC_PINTREE_URL}/api/extension/exportBrowserBookmarks`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //       // Authorization: `Bearer ${sessionToken}`
+    //     },
+    //     body: JSON.stringify({})
+    //   }
+    // )
   }
 
   return (
